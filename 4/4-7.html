@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件参数校验与非Props特性</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <child>
+        <template slot-scope="props">
+            <li>{{props.item1}}</li>
+            <h1>{{props.item1}}</h1>
+        </template>
+    </child>
+</div>
+
+<script>
+    Vue.component('child',{
+        data: function () {
+            return {
+                list: [1,2,3,4]
+            }
+        },
+        template: '<div>' +
+            '<ul>' +
+                '<slot v-for="item of list" :item1="item"></slot>'+
+            '</ul>' +
+            '</div>'
+    })
+
+    var vm = new Vue({
+        el: "#root"
+    })
+</script>
+</body>
+</html>
